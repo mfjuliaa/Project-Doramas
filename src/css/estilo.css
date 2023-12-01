@@ -1,0 +1,190 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+.header {
+    background-color: #a7d0f4;
+    color: #000000;
+    padding: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.doramas-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+}
+
+.doramas {
+    display: flex;
+    transition: transform 0.3s ease;
+}
+
+.dorama {
+    width: 350px;
+    margin-right: 20px;
+    text-align: center;
+    background-color: #ffffff;
+    color: #333333;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    transition: transform 0.5s ease;
+    cursor: pointer;
+}
+
+.dorama img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.dorama:hover {
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+}
+
+.sinopse {
+    display: none;
+    width: 80%;
+    max-width: 400px;
+    background-color: #ffffff;
+    color: #333333;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.sinopse h2 {
+    margin: 10px 0;
+    font-size: 20px;
+}
+
+.sinopse p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.dorama:hover .sinopse {
+    display: block;
+}
+
+.seta-esquerda,
+.seta-direita {
+    font-size: 24px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    color: #ffffff;
+    background-color: #3498db;
+    padding: 10px;
+    border-radius: 50%;
+    transition: color 0.3s ease;
+}
+
+.seta-esquerda {
+    z-index: 2;
+    left: 20px;
+}
+
+.seta-direita {
+    right: 20px;
+}
+
+.seta-esquerda:hover,
+.seta-direita:hover {
+    color: #2980b9;
+}
+
+#meu-nome {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+}
+
+
+
+/* Estilos padrão para telas maiores */
+/* ... (seus estilos atuais) */
+
+/* Estilos para telas menores (dispositivos móveis) */
+@media (max-width: 768px) {
+    .doramas {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .dorama {
+        width: 90%;
+        max-width: 300px; /* ou qualquer valor que melhor se ajuste ao design */
+        margin: 10px;
+    }
+
+    .sinopse {
+        width: 90%;
+        max-width: 90%;
+        left: 5%;
+        transform: none;
+    }
+
+    .seta-esquerda,
+    .seta-direita {
+        font-size: 20px;
+        padding: 8px;
+    }
+
+    #meu-nome {
+        position: static;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+}
+
+
+.sinopse.mostrar-sinopse {
+    display: block;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+}
+
+
+.doramas-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    overflow-x: auto; /* Alterado para 'auto' para permitir rolagem horizontal em dispositivos menores */
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch; /* Adiciona suporte a rolagem suave no iOS */
+    scroll-snap-type: x mandatory; /* Permite a rolagem suave para cada imagem */
+}
+/* Para dispositivos móveis com largura máxima de 768px */
+@media (max-width: 768px) {
+    .seta-esquerda,
+    .seta-direita {
+        display: none;
+    }
+}

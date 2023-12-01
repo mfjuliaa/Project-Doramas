@@ -1,0 +1,59 @@
+document.addEventListener('DOMContentLoaded', function() {
+    const doramas = document.querySelectorAll('.dorama');
+    const sinopses = document.querySelectorAll('.sinopse');
+
+    // Função para esconder a sinopse
+    function esconderSinopse() {
+        sinopses.forEach(sinopse => {
+            sinopse.style.display = 'none';
+            sinopse.classList.remove('mostrar-sinopse');
+        });
+    }
+
+    doramas.forEach((dorama, index) => {
+        dorama.addEventListener('click', () => {
+            if (sinopses[index].style.display === 'block') {
+                esconderSinopse();
+                return;
+            }
+            esconderSinopse();
+            sinopses[index].style.display = 'block';
+            sinopses[index].classList.add('mostrar-sinopse');
+        });
+    });
+
+    // Adicionando o evento de clique no documento inteiro para esconder a sinopse
+    document.addEventListener('click', function(event) {
+        const clicadoForaSinopse = !event.target.closest('.sinopse') && !event.target.closest('.dorama');
+        if (clicadoForaSinopse) {
+            esconderSinopse();
+        }
+    });
+
+    const doramasContainer = document.querySelector('.doramas');
+    const setaEsquerda = document.querySelector('.seta-esquerda');
+    const setaDireita = document.querySelector('.seta-direita');
+    const larguraDorama = 350;
+    const margemDorama = 20;
+    const totalDoramas = document.querySelectorAll('.dorama').length;
+    let posicaoInicial = 0;
+    const larguraTotalDoramas = (larguraDorama + margemDorama) * totalDoramas;
+
+    doramasContainer.style.width = larguraTotalDoramas + 'px';
+
+    setaDireita.addEventListener('click', () => {
+        posicaoInicial -= larguraDorama + margemDorama;
+        if (posicaoInicial < -larguraTotalDoramas + larguraDorama) {
+            posicaoInicial = 0;
+        }
+        doramasContainer.style.transform = `translateX(${posicaoInicial}px)`;
+    });
+
+    setaEsquerda.addEventListener('click', () => {
+        posicaoInicial += larguraDorama + margemDorama;
+        if (posicaoInicial > 0) {
+            posicaoInicial = -larguraTotalDoramas + larguraDorama;
+        }
+        doramasContainer.style.transform = `translateX(${posicaoInicial}px)`;
+    });
+});
